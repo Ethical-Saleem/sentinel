@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function CoinMarqueeWidget() {
   const [activeTab, setActiveTab] = useState<'spot' | 'margin' | 'staking'>('spot');
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef(0);
 
   const coinCategories = {
     spot: '1,1027,825,1839,5426,52,74,2010,3408,5805,6636,3897,7083,1958,2,512,1831,5994,328,4687,3794,1975,2011,4943,7278,11840,4030,5864,8916,1321,3635,4172,2416',
@@ -13,68 +14,62 @@ export default function CoinMarqueeWidget() {
   };
 
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://files.coinmarketcap.com/static/widget/coinMarquee.js';
-    script.async = true;
-    script.onload = () => setScriptLoaded(true);
-    document.body.appendChild(script);
+    if (!containerRef.current) return;
 
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
+    // Clear container
+    containerRef.current.innerHTML = '';
 
-  useEffect(() => {
-    if (!scriptLoaded) return;
+    // Create unique widget ID
+    widgetIdRef.current += 1;
+    const widgetId = `coinmarketcap-widget-marquee-${widgetIdRef.current}`;
 
-    // Remove old widget if it exists
-    const oldWidget = document.getElementById('coinmarketcap-widget-marquee');
-    if (oldWidget && oldWidget.parentNode) {
-      oldWidget.parentNode.removeChild(oldWidget);
-    }
-
-    // Create a new widget container
+    // Create widget element
     const widget = document.createElement('div');
-    widget.id = 'coinmarketcap-widget-marquee';
+    widget.id = widgetId;
     widget.setAttribute('coins', coinCategories[activeTab]);
     widget.setAttribute('currency', 'USD');
     widget.setAttribute('theme', 'dark');
     widget.setAttribute('transparent', 'false');
     widget.setAttribute('show-symbol-logo', 'true');
 
-    document.getElementById('cmc-container')?.appendChild(widget);
+    containerRef.current.appendChild(widget);
 
-    // Force re-run of the CMC script
-    const newScript = document.createElement('script');
-    newScript.src = 'https://files.coinmarketcap.com/static/widget/coinMarquee.js';
-    newScript.async = true;
-    document.body.appendChild(newScript);
+    // Load script
+    const script = document.createElement('script');
+    script.src = 'https://files.coinmarketcap.com/static/widget/coinMarquee.js';
+    script.async = true;
+    
+    // Add a small delay to ensure DOM is ready
+    setTimeout(() => {
+      document.head.appendChild(script);
+    }, 100);
 
     return () => {
-      newScript.remove();
+      // Cleanup script if still in DOM
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
     };
-  }, [activeTab, scriptLoaded]);
+  }, [activeTab]);
 
   const tabs = [
-    { id: 'spot', label: 'Spot' },
-    { id: 'margin', label: 'Margin' },
-    { id: 'staking', label: 'Staking' },
+    { id: 'spot' as const, label: 'Spot' },
+    { id: 'margin' as const, label: 'Margin' },
+    { id: 'staking' as const, label: 'Staking' },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto mt-4">
+    <div className="max-w-7xl mx-auto mt-4 px-4">
       {/* Tabs */}
       <div className="max-w-xs mx-auto rounded-lg p-2 mb-6">
         <div className="flex bg-gray-800 rounded-lg p-1">
           {tabs.map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id as typeof activeTab)}
+              onClick={() => setActiveTab(tab.id)}
               className={`flex-1 w-auto px-2 py-3 rounded-lg font-semibold transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-gray-700 to-purple-600 text-white shadow-lg scale-105'
+                  ? 'bg-gray-700 text-white shadow-lg scale-105'
                   : 'text-gray-300 hover:bg-gray-600'
               }`}
             >
@@ -85,8 +80,13 @@ export default function CoinMarqueeWidget() {
       </div>
 
       {/* Widget Container */}
-      <div className="shadow-2xl">
-        <div className="p-4 overflow-hidden" id="cmc-container"></div>
+      <div className="shadow-2xl rounded-lg overflow-hidden bg-gray-900">
+        <div 
+          ref={containerRef}
+          className="p-4 min-h-[120px] flex items-center justify-center"
+        >
+          <div className="text-gray-400">Loading market data...</div>
+        </div>
       </div>
     </div>
   );

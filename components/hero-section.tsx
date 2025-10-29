@@ -8,9 +8,9 @@ export const HeroSection = () => {
       id="overview" 
       className="mt-16 rounded-3xl overflow-hidden mx-4"
       style={{
-  background:
-    'radial-gradient(95.83% 57.2% at 50% 102.33%, #2D9CFF 0%, #0D1A20 100%) #17232d',
-}}
+        background:
+          'radial-gradient(95.83% 57.2% at 50% 102.33%, #2D9CFF 0%, #0D1A20 100%) #17232d',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-0">
         <div className="text-center text-white">
@@ -34,18 +34,23 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          <div className="relative w-full max-w-[1100px] mx-auto aspect-[16/9] -mb-12">
+          {/* Desktop Image */}
+          <div className="hidden md:block relative w-full max-w-[1100px] mx-auto aspect-[16/9] -mb-12">
             <Image
               src="/images/hero-image.webp"
               alt="Hero"
               fill
-              className="hidden md:block object-contain w-full h-auto max-w-[1100px]"
+              className="object-contain w-full h-auto"
             />
+          </div>
+
+          {/* Mobile Image - Much Larger */}
+          <div className="block md:hidden relative w-full mx-auto aspect-[9/16] -mb-24">
             <Image
               src="/images/hero-mobile.webp"
               alt="Hero"
               fill
-              className="block md:hidden object-contain w-full h-auto"
+              className="object-contain w-full h-auto"
             />
           </div>
         </div>
