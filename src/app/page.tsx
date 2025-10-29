@@ -1,65 +1,122 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import { useState, useEffect } from 'react';
+import { MainHeader } from '../../components/main-header';
+import { HeroSection } from '../../components/hero-section';
+import { FeaturesSection } from '../../components/features-section';
+import { TradeSection } from '../../components/trade-section';
+import { FuturesSection } from '../../components/futures-section';
+import { EarnSection } from '../../components/earn-section';
+import { OTCSection } from '../../components/otc-section';
+import { AppSection } from '../../components/app-section';
+import { FAQSection } from '../../components/faq-section';
+import { WhySection } from '../../components/why-section';
+import { Footer } from '../../components/main-footer';
+
+// Tailwind config colors (add to your tailwind.config.js)
+// colors: {
+//   primary: { DEFAULT: '#1e3a8a', light: '#3b82f6', dark: '#1e293b' },
+//   secondary: { DEFAULT: '#0ea5e9', light: '#38bdf8', dark: '#0369a1' },
+//   neutral: { DEFAULT: '#f8fafc', dark: '#0f172a' }
+// }
+
+type SectionType = 
+  | "overview"
+  | "features"
+  | "trade"
+  | "futures"
+  | "earn"
+  | "otc"
+  | "app"
+  | "faq"
+  | "why"
+
+export const StickyNav = ({ activeSection }: { activeSection: SectionType }) => {
+  const sections = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'features', label: 'Features' },
+    { id: 'trade', label: 'Trade' },
+    { id: 'futures', label: 'Futures' },
+    { id: 'earn', label: 'Earn' },
+    { id: 'otc', label: 'OTC' },
+    { id: 'app', label: 'Sentinel Pro App' },
+    { id: 'faq', label: 'FAQ' },
+    { id: 'why', label: 'Why Sentinel?' }
+  ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 160;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="hidden md:sticky top-16 bg-white shadow-sm z-40 border-b border-gray-200">
+      <div className="max-w-5xl mx-auto px-4">
+        <nav className="flex items-center justify-center overflow-x-auto py-3 space-x-6 scrollbar-hide">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => scrollToSection(section.id)}
+              className={`whitespace-nowrap text-sm font-medium transition-colors pb-2 border-b-2 ${
+                activeSection === section.id
+                  ? 'text-[#17232d] border-[#17232d]'
+                  : 'text-[#4b5563] border-transparent hover:text-[#17232d]'
+              }`}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+              {section.label}
+            </button>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
+};
+
+export default function DarkwolfLanding() {
+  const [activeSection, setActiveSection] = useState<SectionType>('overview');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections: SectionType[] = ['overview', 'features', 'trade', 'futures', 'earn', 'otc', 'app', 'faq', 'why'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="min-h-screen">
+      <MainHeader />
+      <main>
+        <HeroSection />
+        <StickyNav activeSection={activeSection} />
+        <FeaturesSection />
+        <TradeSection />
+        <FuturesSection />
+        <EarnSection />
+        <OTCSection />
+        <AppSection />
+        <FAQSection />
+        <WhySection />
       </main>
+      <Footer />
     </div>
   );
 }
