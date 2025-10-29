@@ -107,7 +107,7 @@ export const TradeSection = () => {
           </p>
         </div>
         <CoinMarqueeWidget />
-        <div className="w-full text-center">
+        <div className="w-full text-center mt-6">
           <button className="bg-[#17232D] text-[#FFFFFF] px-4 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors sm:w-auto">
             Get started
           </button>
