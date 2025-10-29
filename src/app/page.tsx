@@ -31,7 +31,7 @@ type SectionType =
   | "faq"
   | "why"
 
-export const StickyNav = ({ activeSection }: { activeSection: SectionType }) => {
+const StickyNav = ({ activeSection }: { activeSection: SectionType }) => {
   const sections = [
     { id: 'overview', label: 'Overview' },
     { id: 'features', label: 'Features' },
