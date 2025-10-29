@@ -1,3 +1,6 @@
+'use client';
+
+import Image from "next/image";
 
 export const OTCSection = () => {
   return (
@@ -15,22 +18,36 @@ export const OTCSection = () => {
             Get started
           </button>
         </div>
-        <div className="relative flex flex-col-reverse md:flex-col w-full rounded-lg p-12 overflow-hidden">
+        <div className="relative flex flex-col-reverse md:flex-col w-full rounded-lg md:p-12 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-16 mb-8">
-            <div className="transition-colors">
+            <div className="transition-colors text-center">
+              <Image
+                src="/images/zap.svg"
+                alt="Zap Icon"
+                width={28}
+                height={28}
+                className="block md:hidden mb-4 mx-auto"
+              />
               <h3 className={`text-[18px] md:text-[16px] font-semibold mb-1 text-white`}>Spot and derivatives chat trading</h3>
               <p className={`text-[14px] text-white leading-snug text-white`}>
-                Chat securely with our trade desk for a personalized, high-touch serviceall the way from consultation through to trade execution.
+                Chat securely with our trade desk for a personalized, high-touch service all the way from consultation through to trade execution.
               </p>
             </div>
-            <div className="cursor-pointer transition-colors">
+            <div className="transition-colors text-center">
+              <Image
+                src="/images/chat.svg"
+                alt="Chat Icon"
+                width={28}
+                height={28}
+                className="block md:hidden mb-4 mx-auto"
+              />
               <h3 className={`text-[18px] md:text-[16px] font-semibold mb-1 text-white`}>Trade RFq via OTC portal</h3>
               <p className={`text-[14px] text-white leading-snug text-white`}>
                 Request live trade quotes, execute orders and settle instantly with our simple self-service request-for-quote (RFQ) feature in the OTC Portal.
               </p>
             </div>
           </div>
-          <div className="relative w-full -mb-16">
+          <div className="relative w-full mb-12 md:-mb-16">
             <video
               autoPlay
               loop

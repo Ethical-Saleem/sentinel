@@ -80,7 +80,7 @@ export const TradeSection = () => {
         </div>
         <div className="block md:hidden space-y-8">
           {tradeSections.map((section) => (
-            <div key={section.id} className="rounded-lg p-6 text-center">
+            <div key={section.id} className="rounded-lg md:p-6 w-full text-center">
               <div className="relative w-full h-48 mb-4">
                 <Image
                   src={section.imageUrl}

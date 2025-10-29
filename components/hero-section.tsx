@@ -23,10 +23,12 @@ export const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
-              <button className="bg-white text-[#17232d] px-4 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors w-full sm:w-auto">
+              <button className="bg-[#2D9CFF] text-[#0a1419] px-4 py-3 rounded-lg font-semibold sm:w-auto
+               hover:bg-[#3db2ff] transition-colors duration-200">
                 Sign up now
               </button>
-              <button className="bg-transparent border-2 border-white text-white px-4 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#17232d] transition-colors w-full sm:w-auto">
+              <button className="bg-[#17232d] text-[#b6c2cc] px-4 py-3 rounded-lg font-semibold sm:w-auto
+               hover:bg-[#1e303e] hover:text-[#e2eaf0] transition-colors duration-200">
                 Explore Pro
               </button>
             </div>

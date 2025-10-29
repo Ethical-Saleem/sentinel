@@ -8,20 +8,28 @@ export const FAQSection = () => {
 
   const faqs = [
     {
-      question: 'How do I get started on Darkwolf?',
-      answer: 'Getting started is easy. Simply sign up for an account, complete the verification process, and make your first deposit.'
+      question: 'Is Sentinel Pro different from Sentinel?',
+      answer: 'Sentinel Pro is designed specifically for advanced traders. It consolidates all of our trading offerings along with our industry-leading staking services. Behind the scenes – it\'s the same orderbook, highly liquid markets, and world-class security that Kraken exchange is known for.'
     },
     {
-      question: 'What are the trading fees?',
-      answer: 'Our trading fees are competitive and tiered based on your 30-day trading volume. Maker fees start at 0.16% and taker fees at 0.26%.'
+      question: 'Is Sentinel Pro free to use?',
+      answer: 'There are no changes to the Sentinel Pro fee structure on the new platform, and no hidden spreads. For more information on fees, please visit our Fee Schedule.'
     },
     {
-      question: 'Is my crypto safe on Darkwolf?',
-      answer: 'Yes, we employ industry-leading security measures including cold storage, 2FA, and regular security audits to protect your assets.'
+      question: 'Who can sign up for Sentinel Pro?',
+      answer: 'Sentinel Pro is available to anyone who is 18 or older, and living in a supported region. There are no additional requirements – if you use Sentine, you can use Kraken Pro!'
     },
     {
-      question: 'Can I withdraw my funds anytime?',
-      answer: 'Yes, you can withdraw your funds at any time. Withdrawals are typically processed within 24 hours.'
+      question: 'How do I upgrade to Sentinel Pro?',
+      answer: 'There’s no need to upgrade your account. Just sign in to start trading or create a new account.'
+    },
+    {
+      question: 'How can I learn to use Sentinel Pro?',
+      answer: 'Whether you’re a beginner or a pro, we have a wealth of educational and support resources that empower you to make the most of your crypto holdings and learn how Sentinel Pro can help you to reach your goals.'
+    },
+    {
+      question: 'There’s something else I’d like to know',
+      answer: 'Sentinel offers industry leading support through our Support Center and also offers 24/7 support by email, phone, or live chat.'
     }
   ];
 
