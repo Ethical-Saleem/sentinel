@@ -32,7 +32,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Invest
                   </a>
@@ -40,7 +40,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Trade
                   </a>
@@ -48,7 +48,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Earn
                   </a>
@@ -56,7 +56,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Institutions
                   </a>
@@ -64,7 +64,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Explore Markets
                   </a>
@@ -72,7 +72,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Learn
                   </a>
@@ -80,7 +80,7 @@ export const MainHeader = () => {
                 <li>
                   <a
                     href="#"
-                    className="text-[#e5e7eb] hover:text-[#17232d] transition-colors font-medium"
+                    className="text-[#e5e7eb] hover:text-white transition-colors font-medium"
                   >
                     Why Sentinel?
                   </a>
