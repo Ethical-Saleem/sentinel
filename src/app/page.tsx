@@ -55,7 +55,7 @@ const StickyNav = ({ activeSection }: { activeSection: SectionType }) => {
   };
 
   return (
-    <div className="hidden md:sticky top-16 bg-white shadow-sm z-40 border-b border-gray-200">
+    <div className="hidden md:sticky top-16 shadow-sm z-40 border-b border-gray-200">
       <div className="max-w-5xl mx-auto px-4">
         <nav className="flex items-center justify-center overflow-x-auto py-3 space-x-6 scrollbar-hide">
           {sections.map((section) => (
@@ -64,8 +64,8 @@ const StickyNav = ({ activeSection }: { activeSection: SectionType }) => {
               onClick={() => scrollToSection(section.id)}
               className={`whitespace-nowrap text-sm font-medium transition-colors pb-2 border-b-2 ${
                 activeSection === section.id
-                  ? 'text-[#17232d] border-[#17232d]'
-                  : 'text-[#4b5563] border-transparent hover:text-[#17232d]'
+                  ? 'text-[#ffffff] border-[#ffffff]'
+                  : 'text-gray-600 border-transparent hover:text-[#ffffff]'
               }`}
             >
               {section.label}
